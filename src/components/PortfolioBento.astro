@@ -1,0 +1,771 @@
+---
+const portfolioItems = [
+  {
+    id: 1,
+    type: 'video',
+    title: 'Festival de Música - Highlights',
+    category: 'eventos',
+    src: '/images/portfolio/festival-poster.svg',
+    poster: '/images/portfolio/festival-poster.svg',
+    size: 'large', // large, medium, small
+    description: 'Resumen dinámico del festival con múltiples artistas y patrocinadores'
+  },
+  {
+    id: 2,
+    type: 'image',
+    title: 'Colección Joyería Premium',
+    category: 'producto',
+    src: '/images/portfolio/cosmetics-products.svg',
+    size: 'medium',
+    description: 'Sesión de producto para marca de joyería artesanal'
+  },
+  {
+    id: 3,
+    type: 'video',
+    title: 'Toma Aérea - Evento Corporativo',
+    category: 'dron',
+    src: '/images/portfolio/drone-poster.svg',
+    poster: '/images/portfolio/drone-poster.svg',
+    size: 'medium',
+    description: 'Vista aérea espectacular de evento empresarial'
+  },
+  {
+    id: 4,
+    type: 'image',
+    title: 'Behind the Scenes',
+    category: 'bts',
+    src: '/images/portfolio/bts-setup.svg',
+    size: 'small',
+    description: 'Montaje de iluminación profesional'
+  },
+  {
+    id: 5,
+    type: 'image',
+    title: 'Campaña Ropa Urbana',
+    category: 'moda',
+    src: '/images/portfolio/urban-fashion.svg',
+    size: 'small',
+    description: 'Lookbook para marca de ropa urbana'
+  },
+  {
+    id: 6,
+    type: 'video',
+    title: 'Reel Promocional - Emprendimiento',
+    category: 'redes',
+    src: '/images/portfolio/promo-poster.svg',
+    poster: '/images/portfolio/promo-poster.svg',
+    size: 'medium',
+    description: 'Contenido optimizado para Instagram'
+  },
+  {
+    id: 7,
+    type: 'image',
+    title: 'Retrato Artista',
+    category: 'retratos',
+    src: '/images/portfolio/artist-portrait.svg',
+    size: 'small',
+    description: 'Sesión de retratos para artista musical'
+  },
+  {
+    id: 8,
+    type: 'image',
+    title: 'Evento Nocturno',
+    category: 'eventos',
+    src: '/images/portfolio/night-event.svg',
+    size: 'medium',
+    description: 'Captura de ambiente nocturno con iluminación especial'
+  }
+];
+
+const categories = [
+  { id: 'all', name: 'Todo', icon: '🎯' },
+  { id: 'eventos', name: 'Eventos', icon: '🎉' },
+  { id: 'producto', name: 'Producto', icon: '💎' },
+  { id: 'dron', name: 'Aéreo', icon: '🚁' },
+  { id: 'moda', name: 'Moda', icon: '👗' },
+  { id: 'redes', name: 'Redes', icon: '📱' },
+];
+---
+
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-container">
+    <div class="portfolio-header">
+      <h2 class="section-title">Portfolio Destacado</h2>
+      <p class="section-subtitle">
+        Una selección de mis trabajos más impactantes en fotografía, video y contenido aéreo
+      </p>
+      
+      <!-- Filtros de categorías -->
+      <div class="category-filters" id="categoryFilters">
+        {categories.map((category) => (
+          <button 
+            class={`filter-btn ${category.id === 'all' ? 'active' : ''}`}
+            data-category={category.id}
+          >
+            <span class="filter-icon">{category.icon}</span>
+            <span class="filter-name">{category.name}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Grid Bento -->
+    <div class="bento-grid" id="bentoGrid">
+      {portfolioItems.map((item) => (
+        <div 
+          class={`bento-item ${item.size} ${item.type}`}
+          data-category={item.category}
+          data-item-id={item.id}
+        >
+          <div class="bento-content">
+            {item.type === 'video' ? (
+              <div class="video-container">
+                <video 
+                  class="portfolio-video"
+                  poster={item.poster}
+                  muted
+                  loop
+                  preload="metadata"
+                >
+                  <source src={item.src} type="video/mp4" />
+                </video>
+                <div class="play-overlay">
+                  <div class="play-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M8 5v14l11-7z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div class="image-container">
+                <img 
+                  src={item.src} 
+                  alt={item.title}
+                  loading="lazy"
+                />
+              </div>
+            )}
+            
+            <div class="item-overlay">
+              <div class="item-info">
+                <h3 class="item-title">{item.title}</h3>
+                <p class="item-description">{item.description}</p>
+                <span class="item-category">{item.category}</span>
+              </div>
+              
+              <div class="item-actions">
+                <button class="action-btn view-btn" data-action="view" data-id={item.id}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+                <button class="action-btn share-btn" data-action="share" data-id={item.id}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                    <polyline points="16,6 12,2 8,6"/>
+                    <line x1="12" y1="2" x2="12" y2="15"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Section -->
+    <div class="portfolio-cta">
+      <h3>¿Te gusta lo que ves?</h3>
+      <p>Explora más trabajos en cada categoría o contacta para tu próximo proyecto</p>
+      <div class="cta-buttons">
+        <a href="/contacto" class="btn btn-primary">Trabajemos juntos</a>
+        <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para vista detallada -->
+  <div class="portfolio-modal" id="portfolioModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content" id="modalContent">
+      <button class="modal-close" id="modalClose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="modal-media" id="modalMedia"></div>
+      <div class="modal-info" id="modalInfo"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio-section {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    min-height: 100vh;
+  }
+
+  .portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .portfolio-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .section-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-gray-dark);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 1.6;
+  }
+
+  /* FILTROS */
+  .category-filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 2px solid var(--color-gray-light);
+    background: var(--color-white);
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    color: var(--color-gray-dark);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .filter-icon {
+    font-size: 1.1rem;
+  }
+
+  /* BENTO GRID */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .bento-item {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+  }
+
+  .bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Tamaños del grid */
+  .bento-item.large {
+    grid-column: span 8;
+    grid-row: span 2;
+    min-height: 400px;
+  }
+
+  .bento-item.medium {
+    grid-column: span 4;
+    grid-row: span 2;
+    min-height: 300px;
+  }
+
+  .bento-item.small {
+    grid-column: span 4;
+    grid-row: span 1;
+    min-height: 200px;
+  }
+
+  .bento-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container,
+  .video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-container img,
+  .portfolio-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .bento-item:hover .image-container img,
+  .bento-item:hover .portfolio-video {
+    transform: scale(1.05);
+  }
+
+  /* VIDEO OVERLAY */
+  .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: opacity var(--transition-normal);
+  }
+
+  .bento-item:hover .play-overlay {
+    opacity: 0;
+  }
+
+  .play-button {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark);
+    backdrop-filter: blur(10px);
+  }
+
+  /* ITEM OVERLAY */
+  .item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: var(--spacing-md);
+    transform: translateY(100%);
+    transition: transform var(--transition-normal);
+  }
+
+  .bento-item:hover .item-overlay {
+    transform: translateY(0);
+  }
+
+  .item-info {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .item-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .item-category {
+    display: inline-block;
+    background: var(--color-accent);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .item-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  .action-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-fast);
+  }
+
+  .action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+
+  /* CTA SECTION */
+  .portfolio-cta {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+    border-radius: 20px;
+    color: white;
+  }
+
+  .portfolio-cta h3 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .portfolio-cta p {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-buttons .btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    backdrop-filter: blur(10px);
+  }
+
+  .cta-buttons .btn:hover {
+    background: white;
+    color: var(--color-dark);
+  }
+
+  /* MODAL */
+  .portfolio-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portfolio-modal.active {
+    display: flex;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .bento-item.large {
+      grid-column: span 12;
+    }
+    
+    .bento-item.medium {
+      grid-column: span 6;
+    }
+    
+    .bento-item.small {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .bento-item.large,
+    .bento-item.medium,
+    .bento-item.small {
+      grid-column: span 6;
+      min-height: 250px;
+    }
+
+    .category-filters {
+      gap: var(--spacing-xs);
+    }
+
+    .filter-btn {
+      padding: var(--spacing-xs);
+      font-size: 0.9rem;
+    }
+
+    .filter-name {
+      display: none;
+    }
+
+    .modal-content {
+      grid-template-columns: 1fr;
+      max-width: 95vw;
+      max-height: 95vh;
+    }
+  }
+
+  /* ANIMACIONES DE FILTRADO */
+  .bento-item.filtered-out {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+  }
+
+  .bento-item.filtered-in {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  class PortfolioManager {
+    constructor() {
+      this.currentFilter = 'all';
+      this.portfolioItems = document.querySelectorAll('.bento-item');
+      this.filterButtons = document.querySelectorAll('.filter-btn');
+      this.modal = document.getElementById('portfolioModal');
+      
+      this.init();
+    }
+
+    init() {
+      this.bindFilterEvents();
+      this.bindItemEvents();
+      this.bindModalEvents();
+      this.initVideoEvents();
+    }
+
+    bindFilterEvents() {
+      this.filterButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const category = e.currentTarget.dataset.category;
+          this.filterItems(category);
+          this.updateActiveFilter(btn);
+        });
+      });
+    }
+
+    filterItems(category) {
+      this.currentFilter = category;
+      
+      this.portfolioItems.forEach(item => {
+        const itemCategory = item.dataset.category;
+        const shouldShow = category === 'all' || itemCategory === category;
+        
+        item.classList.remove('filtered-in', 'filtered-out');
+        
+        if (shouldShow) {
+          item.classList.add('filtered-in');
+        } else {
+          item.classList.add('filtered-out');
+        }
+      });
+    }
+
+    updateActiveFilter(activeBtn) {
+      this.filterButtons.forEach(btn => btn.classList.remove('active'));
+      activeBtn.classList.add('active');
+    }
+
+    bindItemEvents() {
+      this.portfolioItems.forEach(item => {
+        // Click para abrir modal
+        item.addEventListener('click', (e) => {
+          if (!e.target.closest('.action-btn')) {
+            this.openModal(item.dataset.itemId);
+          }
+        });
+
+        // Eventos para botones de acción
+        const actionBtns = item.querySelectorAll('.action-btn');
+        actionBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const action = btn.dataset.action;
+            const itemId = btn.dataset.id;
+            
+            if (action === 'view') {
+              this.openModal(itemId);
+            } else if (action === 'share') {
+              this.shareItem(itemId);
+            }
+          });
+        });
+      });
+    }
+
+    bindModalEvents() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalClose = document.getElementById('modalClose');
+      
+      [modalOverlay, modalClose].forEach(el => {
+        el?.addEventListener('click', () => this.closeModal());
+      });
+
+      // Cerrar con ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.modal?.classList.contains('active')) {
+          this.closeModal();
+        }
+      });
+    }
+
+    initVideoEvents() {
+      const videos = document.querySelectorAll('.portfolio-video');
+      
+      videos.forEach(video => {
+        const item = video.closest('.bento-item');
+        
+        item.addEventListener('mouseenter', () => {
+          video.play().catch(() => {});
+        });
+        
+        item.addEventListener('mouseleave', () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      });
+    }
+
+    openModal(itemId) {
+      // Aquí implementarías la lógica para mostrar el item en el modal
+      console.log('Opening modal for item:', itemId);
+      if (this.modal) {
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    closeModal() {
+      if (this.modal) {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    shareItem(itemId) {
+      if (navigator.share) {
+        navigator.share({
+          title: 'JEFILMZ Portfolio',
+          text: 'Mira este increíble trabajo de JEFILMZ',
+          url: window.location.href
+        });
+      } else {
+        // Fallback: copiar al clipboard
+        navigator.clipboard.writeText(window.location.href);
+        // Mostrar notificación temporal
+        this.showNotification('Enlace copiado al portapapeles');
+      }
+    }
+
+    showNotification(message) {
+      const notification = document.createElement('div');
+      notification.textContent = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--color-accent);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10000;
+        animation: slideInRight 0.3s ease-out;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new PortfolioManager();
+  });
+</script>

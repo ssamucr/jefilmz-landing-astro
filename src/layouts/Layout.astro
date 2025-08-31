@@ -1,0 +1,176 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description = "JEFILMZ - Fotografía, video y contenido aéreo profesional. Especializado en eventos, redes sociales y campañas promocionales.",
+  currentPath = "/",
+  ogImage = "/images/og-image.jpg"
+} = Astro.props;
+
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content={description} />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title} | JEFILMZ</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={`${title} | JEFILMZ`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:title" content={`${title} | JEFILMZ`} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={ogImage} />
+
+  <!-- Additional Meta Tags -->
+  <meta name="author" content="JEFILMZ" />
+  <meta name="keywords" content="fotografía, video, dron, eventos, redes sociales, contenido, promocional" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={Astro.url} />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "JEFILMZ",
+      "jobTitle": "Fotógrafo y Videógrafo Profesional",
+      "description": "Especializado en fotografía de eventos, contenido para redes sociales y tomas aéreas profesionales",
+      "url": "https://jefilmz.com",
+      "sameAs": [
+        "https://www.instagram.com/jefilmz"
+      ],
+      "offers": {
+        "@type": "Service",
+        "serviceType": [
+          "Fotografía de Eventos",
+          "Producción de Video",
+          "Tomas Aéreas con Dron",
+          "Contenido para Redes Sociales"
+        ]
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="app" class="page-transition">
+    <slot />
+  </div>
+
+  <!-- Scripts globales -->
+  <script>
+    // Page transition effect
+    document.addEventListener('DOMContentLoaded', () => {
+      const app = document.getElementById('app');
+      if (app) {
+        setTimeout(() => {
+          app.classList.add('loaded');
+        }, 100);
+      }
+    });
+
+    // Smooth scroll para navegación interna
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a');
+      
+      if (link && link.getAttribute('href')?.startsWith('#')) {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.substring(1);
+        const targetElement = document.getElementById(targetId || '');
+        
+        if (targetElement) {
+          const navbarHeight = 80; // Altura del navbar fijo
+          const targetPosition = targetElement.offsetTop - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+
+    // Lazy loading para imágenes
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            img.src = img.dataset.src || img.src;
+            img.classList.remove('lazy');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+
+    // Performance monitoring
+    window.addEventListener('load', () => {
+      // Opcional: enviar métricas de performance
+      if ('performance' in window) {
+        const perfData = performance.timing;
+        const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+        console.log(`Page loaded in ${loadTime}ms`);
+      }
+    });
+
+    // Preload critical resources
+    const preloadCriticalImages = () => {
+      const criticalImages = [
+        '/images/jefilmz-portrait.png',
+        '/images/logo.svg'
+      ];
+      
+      criticalImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+      });
+    };
+
+    // Call preload function
+    preloadCriticalImages();
+  </script>
+
+  <!-- Analytics (Opcional - reemplazar con tu tracking ID) -->
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  -->
+</body>
+</html>

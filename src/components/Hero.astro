@@ -1,0 +1,370 @@
+---
+// Hero section component
+---
+
+<section class="hero" id="hero">
+  <div class="hero-background">
+    <!-- Fondo animado creativo -->
+    <div class="bg-animation">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+      <div class="gradient-blob blob-1"></div>
+      <div class="gradient-blob blob-2"></div>
+    </div>
+  </div>
+
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="brand-name">JEFILMZ</span>
+        </h1>
+        <p class="hero-subtitle">
+          Fotografía • Video • Contenido Aéreo
+        </p>
+        <a href="#portfolio" class="btn btn-primary hero-cta">
+          <span>Ver mi trabajo</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-description">
+        <div class="description-content">
+          <h3>Creando historias visuales que conectan</h3>
+          <p>
+            Especializado en fotografía de eventos, contenido para redes sociales 
+            y tomas aéreas profesionales. Desde festivales y celebraciones hasta 
+            campañas promocionales para emprendimientos de moda y joyería.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">Eventos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">200+</span>
+              <span class="stat-label">Contenidos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">6+</span>
+              <span class="stat-label">Años</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="image-container">
+        <img 
+          src="/images/jefilmz-portrait.svg" 
+          alt="JEFILMZ tomando una fotografía" 
+          class="portrait-image"
+        />
+        <div class="image-overlay"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-arrow">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M7 13l3 3 7-7M7 6l3 3 7-7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 80px; /* Espacio para navbar fijo */
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .bg-animation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--color-accent), var(--color-accent-alt));
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .circle-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .circle-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .circle-3 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 60%;
+    animation-delay: 4s;
+  }
+
+  .gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .blob-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--color-accent);
+    top: 20%;
+    right: 20%;
+    animation-delay: 1s;
+  }
+
+  .blob-2 {
+    width: 250px;
+    height: 250px;
+    background: var(--color-accent-alt);
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 3s;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-xl);
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: start;
+  }
+
+  .hero-text {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .brand-name {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-gray-dark);
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+  }
+
+  .hero-cta {
+    font-size: 1.1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .hero-description {
+    animation: fadeInUp 1s ease-out 0.3s both;
+  }
+
+  .description-content h3 {
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+  }
+
+  .description-content p {
+    color: var(--color-gray-dark);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .stats {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-image {
+    justify-self: end;
+    animation: fadeInUp 1s ease-out 0.6s both;
+  }
+
+  .image-container {
+    position: relative;
+    width: 280px;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transform: rotate(-5deg);
+    transition: transform var(--transition-normal);
+  }
+
+  .image-container:hover {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  .portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 60%, rgba(255, 122, 89, 0.2));
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    color: var(--color-accent);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40%, 43% {
+      transform: translateY(-10px);
+    }
+    70% {
+      transform: translateY(-5px);
+    }
+    90% {
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      text-align: center;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+      text-align: center;
+    }
+
+    .hero-image {
+      justify-self: center;
+      order: -1;
+    }
+
+    .image-container {
+      width: 250px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 120px; /* Más espacio para navbar móvil */
+    }
+
+    .hero-container {
+      gap: var(--spacing-md);
+    }
+
+    .brand-name {
+      font-size: 3rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .stats {
+      justify-content: center;
+    }
+
+    .image-container {
+      width: 200px;
+      height: 250px;
+    }
+  }
+</style>

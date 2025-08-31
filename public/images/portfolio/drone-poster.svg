@@ -1,0 +1,31 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87ceeb"/>
+      <stop offset="100%" style="stop-color:#4682b4"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#sky-gradient)"/>
+  
+  <!-- Buildings from above -->
+  <g fill="#2d3748" opacity="0.8">
+    <rect x="50" y="150" width="40" height="60" rx="2"/>
+    <rect x="100" y="120" width="50" height="90" rx="2"/>
+    <rect x="160" y="140" width="35" height="70" rx="2"/>
+    <rect x="200" y="100" width="45" height="110" rx="2"/>
+    <rect x="250" y="130" width="40" height="80" rx="2"/>
+    <rect x="300" y="110" width="35" height="100" rx="2"/>
+  </g>
+  
+  <!-- Drone perspective indicator -->
+  <g transform="translate(350, 50)">
+    <rect x="-15" y="-5" width="30" height="10" fill="#1a202c" rx="5"/>
+    <circle cx="-10" cy="0" r="3" fill="#4a5568"/>
+    <circle cx="10" cy="0" r="3" fill="#4a5568"/>
+    <circle cx="0" cy="0" r="2" fill="#ff4757"/>
+  </g>
+  
+  <text x="200" y="40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Vista Aérea</text>
+  <text x="200" y="280" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">Toma con Dron</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="setup-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a202c"/>
+      <stop offset="100%" style="stop-color:#2d3748"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#setup-bg)"/>
+  
+  <!-- Lights -->
+  <g>
+    <!-- Softbox -->
+    <rect x="50" y="80" width="60" height="40" fill="#4a5568" rx="4"/>
+    <rect x="55" y="85" width="50" height="30" fill="#e2e8f0" rx="2"/>
+    
+    <!-- Light stand -->
+    <rect x="77" y="120" width="6" height="80" fill="#718096"/>
+    <polygon points="70,200 84,200 77,210" fill="#718096"/>
+    
+    <!-- Ring light -->
+    <circle cx="300" cy="100" r="30" fill="#4a5568"/>
+    <circle cx="300" cy="100" r="25" fill="none" stroke="#ffd700" stroke-width="4"/>
+    
+    <!-- Ring light stand -->
+    <rect x="297" y="130" width="6" height="70" fill="#718096"/>
+    <polygon points="290,200 304,200 297,210" fill="#718096"/>
+  </g>
+  
+  <!-- Camera -->
+  <g transform="translate(200, 150)">
+    <rect x="-25" y="-15" width="50" height="30" fill="#1a202c" rx="4"/>
+    <circle cx="15" cy="0" r="12" fill="#2d3748"/>
+    <circle cx="15" cy="0" r="8" fill="#4a5568"/>
+  </g>
+  
+  <text x="200" y="40" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Behind the Scenes</text>
+  <text x="200" y="280" text-anchor="middle" fill="#a0aec0" font-family="Arial, sans-serif" font-size="12">Setup Profesional</text>
+</svg>

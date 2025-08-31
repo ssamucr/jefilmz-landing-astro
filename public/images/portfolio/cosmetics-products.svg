@@ -1,0 +1,46 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cosmetics-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf2f8"/>
+      <stop offset="100%" style="stop-color:#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#cosmetics-bg)"/>
+  
+  <!-- Cosmetic products -->
+  <!-- Lipstick -->
+  <g transform="translate(100, 120)">
+    <rect x="0" y="0" width="12" height="40" rx="6" fill="#dc2626"/>
+    <rect x="2" y="35" width="8" height="15" rx="4" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Compact powder -->
+  <g transform="translate(180, 130)">
+    <circle cx="0" cy="0" r="25" fill="#f3f4f6"/>
+    <circle cx="0" cy="0" r="20" fill="#e5e7eb"/>
+    <circle cx="0" cy="0" r="15" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Nail polish -->
+  <g transform="translate(280, 110)">
+    <rect x="0" y="0" width="15" height="35" rx="7" fill="#ec4899"/>
+    <rect x="3" y="-5" width="9" height="8" rx="4" fill="#374151"/>
+  </g>
+  
+  <!-- Mascara -->
+  <g transform="translate(320, 125)">
+    <rect x="0" y="0" width="8" height="30" rx="4" fill="#1f2937"/>
+    <rect x="1" y="25" width="6" height="15" rx="3" fill="#6b7280"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.3">
+    <circle cx="50" cy="80" r="8" fill="#f472b6"/>
+    <circle cx="350" cy="200" r="12" fill="#a78bfa"/>
+    <circle cx="80" cy="220" r="6" fill="#34d399"/>
+  </g>
+  
+  <text x="200" y="250" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Productos Cosméticos</text>
+  <text x="200" y="270" text-anchor="middle" fill="#a855f7" font-family="Arial, sans-serif" font-size="12">Beauty Photography</text>
+</svg>

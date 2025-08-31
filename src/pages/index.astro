@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import ServicesWheel from '../components/ServicesWheel.astro';
+import PortfolioBento from '../components/PortfolioBento.astro';
+---
+
+<Layout 
+  title="Inicio" 
+  description="JEFILMZ - Fotografía profesional, video y contenido aéreo. Especializado en eventos, redes sociales y campañas promocionales."
+  currentPath="/"
+>
+  <Navbar currentPath="/" />
+  
+  <main>
+    <Hero />
+    <ServicesWheel />
+    <PortfolioBento />
+  </main>
+</Layout>
