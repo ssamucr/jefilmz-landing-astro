@@ -3,8 +3,8 @@
 ---
 
 <section class="hero" id="hero">
-  <div class="hero-background">
-    <!-- Fondo animado creativo -->
+  <!-- <div class="hero-background">
+    Fondo animado creativo
     <div class="bg-animation">
       <div class="floating-circle circle-1"></div>
       <div class="floating-circle circle-2"></div>
@@ -12,7 +12,7 @@
       <div class="gradient-blob blob-1"></div>
       <div class="gradient-blob blob-2"></div>
     </div>
-  </div>
+  </div> -->
 
   <div class="hero-container">
     <div class="hero-content">
@@ -23,33 +23,39 @@
         <p class="hero-subtitle">
           Fotografía • Video • Contenido Aéreo
         </p>
-        <a href="#portfolio" class="btn btn-primary hero-cta">
-          <span>Ver mi trabajo</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
+        <a href="#portfolio">
+
+          <button class="cssbuttons-io">
+              <span>
+                Ver mi trabajo
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </span>
+          </button>
+        
+
         </a>
       </div>
 
       <div class="hero-description">
         <div class="description-content">
-          <h3>Creando historias visuales que conectan</h3>
+          <h3>Creando historias visuales</h3>
           <p>
-            Especializado en fotografía de eventos, contenido para redes sociales 
-            y tomas aéreas profesionales. Desde festivales y celebraciones hasta 
-            campañas promocionales para emprendimientos de moda y joyería.
+            Especializado en creación de contenido para redes sociales 
+            y tomas aéreas profesionales.
           </p>
           <div class="stats">
             <div class="stat">
-              <span class="stat-number">50+</span>
+              <span class="stat-number">5+</span>
               <span class="stat-label">Eventos</span>
             </div>
             <div class="stat">
-              <span class="stat-number">200+</span>
+              <span class="stat-number">100+</span>
               <span class="stat-label">Contenidos</span>
             </div>
             <div class="stat">
-              <span class="stat-number">6+</span>
+              <span class="stat-number">2+</span>
               <span class="stat-label">Años</span>
             </div>
           </div>
@@ -59,12 +65,13 @@
 
     <div class="hero-image">
       <div class="image-container">
+        <!-- Placeholder en svg -->
+        <!-- src="/images/jefilmz-portrait.svg"  -->
         <img 
-          src="/images/jefilmz-portrait.svg" 
+          src="/images/Juan.png"
           alt="JEFILMZ tomando una fotografía" 
           class="portrait-image"
         />
-        <div class="image-overlay"></div>
       </div>
     </div>
   </div>
@@ -82,11 +89,11 @@
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: calc(100vh - 70px); /* Restar altura del navbar */
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding-top: 80px; /* Espacio para navbar fijo */
+    padding-top: 70px; /* Espacio para navbar fijo */
   }
 
   .hero-background {
@@ -163,18 +170,79 @@
     animation-delay: 3s;
   }
 
+  /* Ver mi trabajo boton */
+  /* From Uiverse.io by adamgiebl */ 
+  .cssbuttons-io {
+    position: relative;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    border-radius: 0.8em;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+    color: ghostwhite;
+    overflow: hidden;
+  }
+
+  .cssbuttons-io svg {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+  }
+
+  .cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.2em 0.8em 1.05em;
+  }
+
+  .cssbuttons-io::before,
+  .cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .cssbuttons-io::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+  }
+
+  .cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .cssbuttons-io:active {
+    transform: scale(0.95);
+  }
+
+  /* ------------------------------------------------------------------- */
+
   .hero-container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 0 var(--spacing-sm);
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 0.5fr repeat(3, 1fr) 0.5fr;
     gap: var(--spacing-xl);
     align-items: center;
     min-height: 80vh;
   }
 
   .hero-content {
+    grid-column: 2 / span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-lg);
@@ -253,39 +321,32 @@
   }
 
   .hero-image {
-    justify-self: end;
+    grid-column: 4 / span 2;
+    height: 100%;
     animation: fadeInUp 1s ease-out 0.6s both;
   }
 
   .image-container {
-    position: relative;
-    width: 280px;
-    height: 350px;
+    position: absolute;
+    right: -10%;
+    bottom: -10%;
+    width: 130%;
+    height: 130%;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    transform: rotate(-5deg);
-    transition: transform var(--transition-normal);
+    transform: rotate(-10deg);
+    /* transition: transform var(--transition-normal); */
   }
 
-  .image-container:hover {
+  /* .image-container:hover {
     transform: rotate(0deg) scale(1.05);
-  }
+  } */
 
   .portrait-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-  }
-
-  .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent 60%, rgba(255, 122, 89, 0.2));
   }
 
   .scroll-indicator {
