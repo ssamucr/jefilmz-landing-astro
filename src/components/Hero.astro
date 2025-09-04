@@ -64,13 +64,14 @@
     </div>
 
     <div class="hero-image">
-      <div class="image-container">
+      <div class="image-container parallax-container">
         <!-- Placeholder en svg -->
         <!-- src="/images/jefilmz-portrait.svg"  -->
         <img 
-          src="/images/Juan.png"
-          alt="JEFILMZ tomando una fotografía" 
-          class="portrait-image"
+          src="/images/juan-hero.png"
+          alt="JE FILMZ tomando una fotografía" 
+          class="portrait-image parallax-image"
+          id="hero-parallax-image"
         />
       </div>
     </div>
@@ -334,8 +335,16 @@
     height: 130%;
     border-radius: 20px;
     overflow: hidden;
-    transform: rotate(-10deg);
     /* transition: transform var(--transition-normal); */
+  }
+
+  .parallax-container {
+    will-change: transform;
+  }
+
+  .parallax-image {
+    will-change: transform;
+    transition: transform 0.1s ease-out;
   }
 
   /* .image-container:hover {
@@ -347,6 +356,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
   }
 
   .scroll-indicator {
@@ -429,3 +439,48 @@
     }
   }
 </style>
+
+<script>
+  // Efecto Parallax para la imagen del hero
+  document.addEventListener('DOMContentLoaded', () => {
+    const parallaxImage = document.getElementById('hero-parallax-image');
+    const heroSection = document.getElementById('hero');
+    
+    if (parallaxImage && heroSection) {
+      let ticking = false;
+
+      function updateParallax() {
+        if (!parallaxImage || !heroSection) return;
+        
+        const scrolled = window.pageYOffset;
+        const heroHeight = heroSection.offsetHeight;
+        const heroTop = heroSection.offsetTop;
+        
+        // Solo aplicar parallax mientras la sección hero esté visible
+        if (scrolled < heroHeight + heroTop) {
+          // Movimiento sutil - la imagen se mueve más lento que el scroll
+          const parallaxSpeed = 0.2; // Ajusta este valor para más/menos efecto
+          const yPos = scrolled * parallaxSpeed;
+          
+          // Aplicar transform con GPU acceleration
+          parallaxImage.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        }
+        
+        ticking = false;
+      }
+
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+
+      // Optimización: usar requestAnimationFrame para smooth animation
+      window.addEventListener('scroll', requestTick, { passive: true });
+      
+      // Ejecutar una vez al cargar
+      updateParallax();
+    }
+  });
+</script>
