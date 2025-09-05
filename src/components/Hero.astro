@@ -95,6 +95,8 @@
     align-items: center;
     overflow: hidden;
     padding-top: 70px; /* Espacio para navbar fijo */
+    padding-bottom: 0;
+    box-sizing: border-box;
   }
 
   .hero-background {
@@ -441,8 +443,21 @@
 </style>
 
 <script>
+  // Forzar scroll al top al cargar la página
+  window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+  });
+
+  // Asegurar que la página inicie en el top
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
+
   // Efecto Parallax para la imagen del hero
   document.addEventListener('DOMContentLoaded', () => {
+    // Forzar scroll al top inmediatamente
+    window.scrollTo(0, 0);
+    
     const parallaxImage = document.getElementById('hero-parallax-image');
     const heroSection = document.getElementById('hero');
     
@@ -479,8 +494,15 @@
       // Optimización: usar requestAnimationFrame para smooth animation
       window.addEventListener('scroll', requestTick, { passive: true });
       
-      // Ejecutar una vez al cargar
-      updateParallax();
+      // Ejecutar una vez al cargar (después de asegurar scroll en top)
+      setTimeout(updateParallax, 100);
     }
+  });
+
+  // Asegurar que al recargar con F5 vuelva al top
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
   });
 </script>
